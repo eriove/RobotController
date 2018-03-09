@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotController.ViewModel", "RobotController.ViewModel\RobotController.ViewModel.csproj", "{E8F128B8-ACFC-4957-8FFD-E2065D3E2D2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobotController.ViewModel", "RobotController.ViewModel\RobotController.ViewModel.csproj", "{E8F128B8-ACFC-4957-8FFD-E2065D3E2D2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotController.WPF", "RobotController.WPF\RobotController.WPF.csproj", "{5FF49365-D842-4674-BE26-F8944DA9BEA7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobotController.ViewModel.Tests", "RobotController.ViewModel.Tests\RobotController.ViewModel.Tests.csproj", "{326C8A31-9C3E-4FF0-A621-19407EA4EB50}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobotController.Model", "RobotController.Model\RobotController.Model.csproj", "{B51A55DD-4D41-4C3D-A283-369589FDACB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{E8F128B8-ACFC-4957-8FFD-E2065D3E2D2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8F128B8-ACFC-4957-8FFD-E2065D3E2D2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8F128B8-ACFC-4957-8FFD-E2065D3E2D2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FF49365-D842-4674-BE26-F8944DA9BEA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FF49365-D842-4674-BE26-F8944DA9BEA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FF49365-D842-4674-BE26-F8944DA9BEA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FF49365-D842-4674-BE26-F8944DA9BEA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{326C8A31-9C3E-4FF0-A621-19407EA4EB50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{326C8A31-9C3E-4FF0-A621-19407EA4EB50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{326C8A31-9C3E-4FF0-A621-19407EA4EB50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{326C8A31-9C3E-4FF0-A621-19407EA4EB50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B51A55DD-4D41-4C3D-A283-369589FDACB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B51A55DD-4D41-4C3D-A283-369589FDACB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B51A55DD-4D41-4C3D-A283-369589FDACB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B51A55DD-4D41-4C3D-A283-369589FDACB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
