@@ -18,7 +18,7 @@ namespace RobotController.Model
             _hostNameResolver = hostNameResolver;
         }
 
-        private readonly string _hostName= "http://walle.local";
+        private readonly string _hostName = "http://192.168.10.113";//"http://walle.local";
         private volatile string _resolvedHostName;
 
         private async Task SetServosAndUpdateBatteryVoltage(byte[] servoValues)

@@ -12,16 +12,23 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using RobotController.Model;
+using RobotController.ViewModel;
+using StructureMap;
 
 namespace RobotController.Xamarin.Forms.UWP
 {
     public sealed partial class MainPage
     {
-        public MainPage()
+        private readonly Container _container;
+        public MainPage(/*RobotController.Xamarin.Forms.App formsApp*/)
         {
-            this.InitializeComponent();
+            var registry = new RobotController.Xamarin.Forms.AppRegistry();
+            _container = new Container(registry);
 
-            LoadApplication(new RobotController.Xamarin.Forms.App());
+            this.InitializeComponent();
+            var mainPage = _container.GetInstance<RobotController.Xamarin.Forms.MainPage>();
+            LoadApplication(new RobotController.Xamarin.Forms.App(mainPage));
         }
     }
 }

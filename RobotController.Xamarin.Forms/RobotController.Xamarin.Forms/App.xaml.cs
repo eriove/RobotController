@@ -12,7 +12,7 @@ namespace RobotController.Xamarin.Forms
 	public partial class App : Application
 	{
 	    private readonly Container _container;
-        public App ()
+        public App()
 		{
 			InitializeComponent();
 		    _container = new Container(_ =>
@@ -24,6 +24,12 @@ namespace RobotController.Xamarin.Forms
             });
             MainPage = _container.GetInstance<MainPage>();
         }
+
+	    public App(MainPage mainPage)
+	    {
+	        MainPage = mainPage;
+
+	    }
 
 		protected override void OnStart ()
 		{
