@@ -10,8 +10,7 @@ namespace RobotController.WPF
 {
     public class Wrapper
     {
-
-        public object ViewModel { get; } = new MainViewModel(new RobotModel());
+        public object ViewModel { get; } = new MainViewModel(new RobotModel(new SimpleHostNameResolver()));
     }
 }
 
