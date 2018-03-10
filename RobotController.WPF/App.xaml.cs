@@ -26,6 +26,7 @@ namespace RobotController.WPF
                 _.For<IRobotModel>().Use<RobotModel>();
                 _.For<MainWindow>().Use<MainWindow>();
                 _.For<MainViewModel>().Use<MainViewModel>();
+                _.For<IHostNameResolver>().Use<SimpleHostNameResolver>();
             });
 
             var mainWindow = _container.GetInstance<MainWindow>();

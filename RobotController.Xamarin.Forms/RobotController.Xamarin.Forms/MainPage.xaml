@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:RobotController.Xamarin.Forms"
+             x:Class="RobotController.Xamarin.Forms.MainPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Button Grid.Row="0" Grid.Column="2" Command="{Binding GoForward}" Text="Forward"/>
+        <Button Grid.Row="0" Grid.Column="1" Command="{Binding GoForwardLeft}" Text="Left"/>
+        <Button Grid.Row="0" Grid.Column="3" Command="{Binding GoForwardRight}" Text="Right"/>
+        <Button Grid.Row="1" Grid.Column="2" Command="{Binding Stop}" Text="Stop"/>
+        <Button Grid.Row="1" Grid.Column="1" Command="{Binding RotateLeft}" Text="Left rotation"/>
+        <Button Grid.Row="1" Grid.Column="3" Command="{Binding RotateRight}" Text="Right rotation"/>
+
+        <Button Grid.Row="2" Grid.Column="2" Text="Backward"/>
+        <Button Grid.Row="2" Grid.Column="1" Text="Left"/>
+        <Button Grid.Row="2" Grid.Column="3" Text="Right"/>
+
+        <Label Text="{Binding BatteryVoltage}" FontSize="18" />
+    </Grid>
+</ContentPage>

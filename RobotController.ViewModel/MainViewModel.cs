@@ -75,7 +75,7 @@ namespace RobotController.ViewModel
         public RelayCommand RotateRight { get; set; }
         public ElectricPotentialDc BatteryVoltage
         {
-            get { return _batteryVoltage; }
+            get => _batteryVoltage;
             set {
                 if (value != _batteryVoltage)
                 {

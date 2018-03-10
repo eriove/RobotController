@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net46</TargetFrameworks>
+    <TargetFramework>netstandard1.3</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Condition="'$(TargetFramework)'=='netstandard2.0'" Include="MvvmLightLibsStd10" Version="5.4.1" />
-    <PackageReference Condition="'$(TargetFramework)'!='netstandard2.0'" Include="MvvmLightLibs" Version="5.4.1" />
+    <PackageReference Condition="'$(TargetFramework)'=='netstandard1.3'" Include="MvvmLightLibsStd10" Version="5.4.1" />
+    <PackageReference Condition="'$(TargetFramework)'!='netstandard1.3'" Include="MvvmLightLibs" Version="5.4.1" />
   </ItemGroup>
 
   <ItemGroup>

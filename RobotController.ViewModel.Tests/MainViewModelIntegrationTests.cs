@@ -18,7 +18,7 @@ namespace RobotController.ViewModel.Tests
         public MainViewModelIntegrationTests(ITestOutputHelper output)
         {
             _output = output;
-            _robotModel = new RobotModel();
+            _robotModel = new RobotModel(new SimpleHostNameResolver());
             _sut = new MainViewModel(_robotModel);
         }
 
@@ -46,6 +46,7 @@ namespace RobotController.ViewModel.Tests
             };
             _sut.GoForward.Execute(null);
             PrintAllCalls();
+            Thread.Sleep(10);   // To wait for events, should ideally be solved in a better way
             batteryVoltageWasCalled.ShouldBe(true);
         }
 

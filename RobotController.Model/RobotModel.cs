@@ -11,10 +11,19 @@ namespace RobotController.Model
 {
     public class RobotModel : IRobotModel
     {
-        private string _hostName = "http://walle.local";
+        private readonly IHostNameResolver _hostNameResolver;
+
+        public RobotModel(IHostNameResolver hostNameResolver)
+        {
+            _hostNameResolver = hostNameResolver;
+        }
+
+        private readonly string _hostName= "http://walle.local";
+        private volatile string _resolvedHostName;
 
         private async Task SetServosAndUpdateBatteryVoltage(byte[] servoValues)
         {
+            _resolvedHostName  = _resolvedHostName ?? await _hostNameResolver.GetValidHostName(_hostName);
             var query = _hostName.AppendPathSegment("servos");
             for (int i = 0; i < servoValues.Length; i++)
             {
