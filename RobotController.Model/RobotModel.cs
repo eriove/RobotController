@@ -20,7 +20,7 @@ namespace RobotController.Model
             {
                 query = query.SetQueryParam((i + 1).ToString(), servoValues[i]);
             }
-            var result = await  query.GetAsync().ConfigureAwait(false);
+            var result = await query.PostAsync(null);
             var resultString = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
             if (int.TryParse(resultString, out int voltageTimesHundred))
             {
@@ -47,24 +47,24 @@ namespace RobotController.Model
 
         public Task GoForwardLeft()
         {
-            throw new NotImplementedException();
+            return SetServosAndUpdateBatteryVoltage(new byte[] { 255, 128 });
         }
 
         public Task GoForwardRight()
         {
-            throw new NotImplementedException();
+            return SetServosAndUpdateBatteryVoltage(new byte[] { 128, 0});
         }
 
        
 
-        public async Task RotateLeft()
+        public Task RotateLeft()
         {
-            throw new NotImplementedException();
+            return SetServosAndUpdateBatteryVoltage(new byte[] { 255, 255 });
         }
 
-        public async Task RotateRight()
+        public Task RotateRight()
         {
-            throw new NotImplementedException();
+            return SetServosAndUpdateBatteryVoltage(new byte[] { 0, 0 });
         }
 
         private void OnBatteryVoltageChanged(ElectricPotentialDc batteryVoltage)
