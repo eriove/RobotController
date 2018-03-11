@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotController.Xamarin.For
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobotController.Xamarin.Forms", "RobotController.Xamarin.Forms\RobotController.Xamarin.Forms\RobotController.Xamarin.Forms.csproj", "{2E5A33DA-8B7A-4806-94D8-AF408CE07A8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotController.Common", "RobotController.Common\RobotController.Common.csproj", "{ECA2CD5D-4DDD-409B-9EC9-D07466CD5292}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -166,6 +168,22 @@ Global
 		{2E5A33DA-8B7A-4806-94D8-AF408CE07A8C}.Release|x64.Build.0 = Release|Any CPU
 		{2E5A33DA-8B7A-4806-94D8-AF408CE07A8C}.Release|x86.ActiveCfg = Release|Any CPU
 		{2E5A33DA-8B7A-4806-94D8-AF408CE07A8C}.Release|x86.Build.0 = Release|Any CPU
+		{ECA2CD5D-4DDD-409B-9EC9-D07466CD5292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECA2CD5D-4DDD-409B-9EC9-D07466CD5292}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECA2CD5D-4DDD-409B-9EC9-D07466CD5292}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{ECA2CD5D-4DDD-409B-9EC9-D07466CD5292}.Debug|ARM.Build.0 = Debug|Any CPU
+		{ECA2CD5D-4DDD-409B-9EC9-D07466CD5292}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ECA2CD5D-4DDD-409B-9EC9-D07466CD5292}.Debug|x64.Build.0 = Debug|Any CPU
+		{ECA2CD5D-4DDD-409B-9EC9-D07466CD5292}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ECA2CD5D-4DDD-409B-9EC9-D07466CD5292}.Debug|x86.Build.0 = Debug|Any CPU
+		{ECA2CD5D-4DDD-409B-9EC9-D07466CD5292}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECA2CD5D-4DDD-409B-9EC9-D07466CD5292}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECA2CD5D-4DDD-409B-9EC9-D07466CD5292}.Release|ARM.ActiveCfg = Release|Any CPU
+		{ECA2CD5D-4DDD-409B-9EC9-D07466CD5292}.Release|ARM.Build.0 = Release|Any CPU
+		{ECA2CD5D-4DDD-409B-9EC9-D07466CD5292}.Release|x64.ActiveCfg = Release|Any CPU
+		{ECA2CD5D-4DDD-409B-9EC9-D07466CD5292}.Release|x64.Build.0 = Release|Any CPU
+		{ECA2CD5D-4DDD-409B-9EC9-D07466CD5292}.Release|x86.ActiveCfg = Release|Any CPU
+		{ECA2CD5D-4DDD-409B-9EC9-D07466CD5292}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

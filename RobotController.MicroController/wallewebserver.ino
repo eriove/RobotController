@@ -115,8 +115,10 @@ void setup ( void ) {
 	Serial.println ( WiFi.localIP() );
 
 	if ( MDNS.begin ( "walle" ) ) {
+		MDNS.addService("http", "tcp", 80);
 		Serial.println ( "MDNS responder started" );
 	}
+	
 
 	server.on ( "/", handleRoot );
 	server.on ( "/analog", handleAnalog );
@@ -137,5 +139,7 @@ void setup ( void ) {
 
 void loop ( void ) {
 	server.handleClient();
+	//delay(10);
+	//MDNS.update();
 }
 

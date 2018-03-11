@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using RobotController.Model;
@@ -14,12 +15,12 @@ namespace RobotController.ViewModel.Tests
         private readonly ITestOutputHelper _output;
         private readonly HttpTest _httpTest = new HttpTest();
         private readonly MainViewModel _sut;
-        private readonly IRobotModel _robotModel;
+        private string _ip = "http://192.168.10.113";
         public MainViewModelIntegrationTests(ITestOutputHelper output)
         {
             _output = output;
-            _robotModel = new RobotModel(new SimpleHostNameResolver());
-            _sut = new MainViewModel(_robotModel);
+            IRobotModel robotModel = new RobotModel(new TmdsMDnsHostNameResolver());
+            _sut = new MainViewModel(robotModel);
         }
 
         [Fact]
@@ -27,8 +28,10 @@ namespace RobotController.ViewModel.Tests
         {
             _httpTest.RespondWith("740");
             _sut.GoForward.Execute(null);
+
+            Thread.Sleep(1000);   // To wait for events, should ideally be solved in a better way
             PrintAllCalls();
-            _httpTest.ShouldHaveCalled("http://walle.local/servos").WithQueryParamValue("1",255).WithQueryParamValue("2", 0);
+            _httpTest.ShouldHaveCalled(_ip + "/servos").WithQueryParamValue("1",255).WithQueryParamValue("2", 0);
         }
 
         [Fact]
@@ -45,9 +48,29 @@ namespace RobotController.ViewModel.Tests
                 }
             };
             _sut.GoForward.Execute(null);
+            Thread.Sleep(1000);   // To wait for events, should ideally be solved in a better way
             PrintAllCalls();
-            Thread.Sleep(10);   // To wait for events, should ideally be solved in a better way
             batteryVoltageWasCalled.ShouldBe(true);
+        }
+
+        [Fact]
+        public async Task TestResolving()
+        {
+            ILookup<string, string> domains = await ZeroconfResolver.BrowseDomainsAsync();
+            var responses = await ZeroconfResolver.ResolveAsync(domains.Select(x=>x.Key));
+            foreach (var resp in responses)
+            {
+                _output.WriteLine(resp.ToString());
+                _output.WriteLine(resp.IPAddress);
+            }
+        }
+
+        [Fact]
+        public async Task TestResolvingTmdss()
+        {
+            TmdsMDnsHostNameResolver resolver = new TmdsMDnsHostNameResolver();
+            string result = await resolver.GetValidHostName("http://walle.local");
+            result.ShouldBe(_ip);
         }
 
         private void PrintAllCalls()

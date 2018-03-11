@@ -155,6 +155,10 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\RobotController.Common\RobotController.Common.csproj">
+      <Project>{eca2cd5d-4ddd-409b-9ec9-d07466cd5292}</Project>
+      <Name>RobotController.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\RobotController.Model\RobotController.Model.csproj">
       <Project>{b51a55dd-4d41-4c3d-a283-369589fdacb2}</Project>
       <Name>RobotController.Model</Name>

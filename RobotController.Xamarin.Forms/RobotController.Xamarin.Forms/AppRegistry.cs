@@ -4,6 +4,7 @@ using System.Text;
 using RobotController.Model;
 using RobotController.ViewModel;
 using StructureMap;
+using Xamarin.Forms;
 
 namespace RobotController.Xamarin.Forms
 {
@@ -14,7 +15,7 @@ namespace RobotController.Xamarin.Forms
             For<IRobotModel>().Use<RobotModel>();
             For<MainPage>().Use<MainPage>();
             For<MainViewModel>().Use<MainViewModel>();
-            For<IHostNameResolver>().Use<SimpleHostNameResolver>();
+            For<IHostNameResolver>().Use<TmdsMDnsHostNameResolver> ();
         }
     }
 }

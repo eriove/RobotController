@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\RobotController.Common\RobotController.Common.csproj" />
     <ProjectReference Include="..\..\RobotController.Model\RobotController.Model.csproj" />
     <ProjectReference Include="..\..\RobotController.ViewModel\RobotController.ViewModel.csproj" />
   </ItemGroup>

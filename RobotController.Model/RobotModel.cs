@@ -18,13 +18,13 @@ namespace RobotController.Model
             _hostNameResolver = hostNameResolver;
         }
 
-        private readonly string _hostName = "http://192.168.10.113";//"http://walle.local";
+        private readonly string _hostName = "http://walle.local";//"http://192.168.10.113";
         private volatile string _resolvedHostName;
 
         private async Task SetServosAndUpdateBatteryVoltage(byte[] servoValues)
         {
             _resolvedHostName  = _resolvedHostName ?? await _hostNameResolver.GetValidHostName(_hostName);
-            var query = _hostName.AppendPathSegment("servos");
+            var query = _resolvedHostName.AppendPathSegment("servos");
             for (int i = 0; i < servoValues.Length; i++)
             {
                 query = query.SetQueryParam((i + 1).ToString(), servoValues[i]);

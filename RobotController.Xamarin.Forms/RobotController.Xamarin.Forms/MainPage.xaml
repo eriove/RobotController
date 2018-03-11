@@ -2,7 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:RobotController.Xamarin.Forms"
+             xmlns:common="clr-namespace:RobotController.Common;assembly=RobotController.Common"
              x:Class="RobotController.Xamarin.Forms.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <common:ElectricPotentialValueConverter x:Key="voltageToString" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -27,6 +33,6 @@
         <Button Grid.Row="2" Grid.Column="1" Text="Left"/>
         <Button Grid.Row="2" Grid.Column="3" Text="Right"/>
 
-        <Label Text="{Binding BatteryVoltage}" FontSize="18" />
+        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Path=BatteryVoltage, Converter={StaticResource voltageToString}}" FontSize="18" />
     </Grid>
 </ContentPage>
