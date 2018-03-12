@@ -19,6 +19,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -40,5 +41,6 @@
         <Button Grid.Row="2" Grid.Column="3">Right</Button>
 
         <Label Content="{Binding BatteryVoltage}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="5" Content="{Binding ErrorMessage}" />
     </Grid>
 </Window>

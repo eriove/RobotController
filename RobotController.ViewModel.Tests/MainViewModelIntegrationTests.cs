@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using RobotController.Model;
 using Flurl.Http.Testing;
+using Moq;
 using Shouldly;
 using Xunit;
 using Xunit.Abstractions;
@@ -19,7 +20,9 @@ namespace RobotController.ViewModel.Tests
         public MainViewModelIntegrationTests(ITestOutputHelper output)
         {
             _output = output;
-            IRobotModel robotModel = new RobotModel(new TmdsMDnsHostNameResolver());
+            var resolver = new Mock<IHostNameResolver>();
+            resolver.Setup(x => x.GetValidHostName(It.IsAny<string>())).Returns(Task.FromResult(_ip));
+            IRobotModel robotModel = new RobotModel(resolver.Object);
             _sut = new MainViewModel(robotModel);
         }
 
@@ -54,15 +57,22 @@ namespace RobotController.ViewModel.Tests
         }
 
         [Fact]
-        public async Task TestResolving()
+        public void WhenMakingCallWithTimeoutErrorMessageShouldBeSet()
         {
-            ILookup<string, string> domains = await ZeroconfResolver.BrowseDomainsAsync();
-            var responses = await ZeroconfResolver.ResolveAsync(domains.Select(x=>x.Key));
-            foreach (var resp in responses)
+            _httpTest.SimulateTimeout();
+            bool errorWasCalled = false;
+            _sut.PropertyChanged += (sender, args) =>
             {
-                _output.WriteLine(resp.ToString());
-                _output.WriteLine(resp.IPAddress);
-            }
+                _output.WriteLine(args.PropertyName);
+                if (args.PropertyName == nameof(MainViewModel.ErrorMessage))
+                {
+                    errorWasCalled = true;
+                }
+            };
+            _sut.GoForward.Execute(null);
+            Thread.Sleep(1000);   // To wait for events, should ideally be solved in a better way
+            PrintAllCalls();
+            errorWasCalled.ShouldBe(true);
         }
 
         [Fact]

@@ -23,21 +23,30 @@ namespace RobotController.Model
 
         private async Task SetServosAndUpdateBatteryVoltage(byte[] servoValues)
         {
-            _resolvedHostName  = _resolvedHostName ?? await _hostNameResolver.GetValidHostName(_hostName);
-            var query = _resolvedHostName.AppendPathSegment("servos");
-            for (int i = 0; i < servoValues.Length; i++)
+            try
             {
-                query = query.SetQueryParam((i + 1).ToString(), servoValues[i]);
+                _resolvedHostName  = _resolvedHostName ?? await _hostNameResolver.GetValidHostName(_hostName);
+                var query = _resolvedHostName.AppendPathSegment("servos");
+                for (int i = 0; i < servoValues.Length; i++)
+                {
+                    query = query.SetQueryParam((i + 1).ToString(), servoValues[i]);
+                }
+                var result = await query.PostAsync(null);
+                var resultString = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
+                if (int.TryParse(resultString, out int voltageTimesHundred))
+                {
+                    OnBatteryVoltageChanged(ElectricPotentialDc.FromVoltsDc(voltageTimesHundred * 1e-2));
+                }
             }
-            var result = await query.PostAsync(null);
-            var resultString = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
-            if (int.TryParse(resultString, out int voltageTimesHundred))
+            catch (Exception e)
             {
-                OnBatteryVoltageChanged(ElectricPotentialDc.FromVoltsDc(voltageTimesHundred * 1e-2));
+                RaiseException?.Invoke(this, e);
             }
         }
 
         public event EventHandler<ElectricPotentialDc> RaiseBatteryVoltageChanged;
+        public event EventHandler<Exception> RaiseException;
+
 
         public Task GoForward()
         {

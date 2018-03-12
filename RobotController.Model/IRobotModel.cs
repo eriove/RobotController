@@ -11,6 +11,7 @@ namespace RobotController.Model
     {
         Task GoForward();
         event EventHandler<ElectricPotentialDc> RaiseBatteryVoltageChanged;
+        event EventHandler<Exception> RaiseException;
         Task GoBackward();
         Task GoForwardLeft();
         Task GoForwardRight();

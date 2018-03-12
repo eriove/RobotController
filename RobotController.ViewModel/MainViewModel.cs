@@ -13,7 +13,7 @@ namespace RobotController.ViewModel
     {
         private readonly IRobotModel _model;
         private bool _canSendCommands = true;
-        private ElectricPotentialDc _batteryVoltage;
+        
 
         public MainViewModel(IRobotModel model)
         {
@@ -21,6 +21,10 @@ namespace RobotController.ViewModel
             _model.RaiseBatteryVoltageChanged += (sender, dc) =>
             {
                 BatteryVoltage = dc;
+            };
+            _model.RaiseException += (sender, exception) =>
+            {
+                ErrorMessage = exception.Message;
             };
             GoForward = new RelayCommand(async () =>
             {
@@ -65,6 +69,7 @@ namespace RobotController.ViewModel
                 CanSendCommands = true;
             }, () => CanSendCommands);
         }
+
         public RelayCommand GoForward { get; set; }
         public RelayCommand GoBackward { get; set; }
         public RelayCommand GoForwardLeft { get; set; }
@@ -73,10 +78,12 @@ namespace RobotController.ViewModel
 
         public RelayCommand RotateLeft { get; set; }
         public RelayCommand RotateRight { get; set; }
+        private ElectricPotentialDc _batteryVoltage;
         public ElectricPotentialDc BatteryVoltage
         {
             get => _batteryVoltage;
-            set {
+            set
+            {
                 if (value != _batteryVoltage)
                 {
                     _batteryVoltage = value;
@@ -84,6 +91,21 @@ namespace RobotController.ViewModel
                 }
             }
         }
+
+        private string _errorMessage;
+        public string ErrorMessage
+        {
+            get => _errorMessage;
+            set
+            {
+                if (value != _errorMessage)
+                {
+                    _errorMessage = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
 
         public bool CanSendCommands
         {
@@ -95,6 +117,11 @@ namespace RobotController.ViewModel
                     _canSendCommands = value;
                     RaisePropertyChanged();
                     GoForward.RaiseCanExecuteChanged();
+                    GoForwardLeft.RaiseCanExecuteChanged();
+                    GoForwardRight.RaiseCanExecuteChanged();
+                    Stop.RaiseCanExecuteChanged();
+                    RotateLeft.RaiseCanExecuteChanged();
+                    RotateRight.RaiseCanExecuteChanged();
                 }
             }
         }
