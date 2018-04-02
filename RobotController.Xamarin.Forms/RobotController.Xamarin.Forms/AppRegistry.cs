@@ -19,7 +19,8 @@ namespace RobotController.Xamarin.Forms
             For<IHostNameResolver>().Use<TmdsMDnsHostNameResolver> ();
             For<ISettings>().Use<Settings>();
             For<SettingsViewModel>().Use<SettingsViewModel>();
-            For<ISettingsView>().Use<SettingsPage>();
+            ForConcreteType<NavigationService>().Configure.Singleton();
+            Forward<NavigationService, INavigationService>();
         }
     }
 }

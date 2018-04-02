@@ -13,12 +13,14 @@ namespace RobotController.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private readonly IRobotModel _model;
+        private readonly INavigationService _navigationService;
         private bool _canSendCommands = true;
         
 
-        public MainViewModel(IRobotModel model, ISettingsView settingsView)
+        public MainViewModel(IRobotModel model, INavigationService navigationService)
         {
             _model = model;
+            _navigationService = navigationService;
             _model.RaiseBatteryVoltageChanged += (sender, dc) =>
             {
                 BatteryVoltage = dc;
@@ -29,7 +31,7 @@ namespace RobotController.ViewModel
                 ErrorMessage = exception.Message;
             };
 
-            ShowSettings = new RelayCommand(async () => await settingsView.Show());
+            ShowSettings = new RelayCommand(async () => await _navigationService.ShowSettings());
 
             GoForward = new RelayCommand(async () =>
             {

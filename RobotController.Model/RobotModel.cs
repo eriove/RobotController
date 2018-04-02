@@ -18,10 +18,7 @@ namespace RobotController.Model
         {
             _hostNameResolver = hostNameResolver;
             _settings = settings;
-            _hostName = _settings.HostName;
         }
-
-        private readonly string _hostName = "http://walle.local";//"http://192.168.10.113";
 
         private async Task SetServosAndUpdateBatteryVoltage(byte[] servoValues)
         {
@@ -51,27 +48,27 @@ namespace RobotController.Model
 
         public Task GoForward()
         {
-            return SetServosAndUpdateBatteryVoltage(new byte[] { 255, 0 });
+            return SetServosAndUpdateBatteryVoltage(new byte[] { 0, 255 });
         }
 
         public Task GoBackward()
         {
-            return SetServosAndUpdateBatteryVoltage(new byte[] { 0, 255 });
+            return SetServosAndUpdateBatteryVoltage(new byte[] { 255, 0 });
         }
 
         public Task Stop()
         {
-            return SetServosAndUpdateBatteryVoltage(new byte[] { 128,128 });
+            return SetServosAndUpdateBatteryVoltage(new byte[] { _settings.LeftMiddleValue,_settings.RightMiddleValue});
         }
 
         public Task GoForwardLeft()
         {
-            return SetServosAndUpdateBatteryVoltage(new byte[] { 255, 128 });
+            return SetServosAndUpdateBatteryVoltage(new byte[] { 255, _settings.RightMiddleValue });
         }
 
         public Task GoForwardRight()
         {
-            return SetServosAndUpdateBatteryVoltage(new byte[] { 128, 0});
+            return SetServosAndUpdateBatteryVoltage(new byte[] { _settings.LeftMiddleValue, 0});
         }
 
        

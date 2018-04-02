@@ -8,7 +8,13 @@
             HorizontalOptions="FillAndExpand">
             <Label VerticalOptions="Start" Text="Host name" />
             <Entry VerticalOptions="Start" Text="{Binding Path=HostName}"/>
-            <Button VerticalOptions="Start" Command="{Binding Path=SaveSettings}" Text="Save"/>
+            <Label VerticalOptions="Start" Text="Left middle value" />
+            <Entry VerticalOptions="Start" Text="{Binding Path=LeftMiddleValue}"/>
+            <Slider VerticalOptions="Start" Value="{Binding Path=LeftMiddleValue}" Minimum="0" Maximum="255"/>
+            <Label VerticalOptions="Start" Text="Right middle value" />
+            <Entry VerticalOptions="Start" Text="{Binding Path=RightMiddleValue}"/>
+            <Slider VerticalOptions="Start" Value="{Binding Path=RightMiddleValue}" Minimum="0" Maximum="255"/>
+            <Button VerticalOptions="Start" Command="{Binding Path=SaveSettingsAndClose}" Text="Save"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

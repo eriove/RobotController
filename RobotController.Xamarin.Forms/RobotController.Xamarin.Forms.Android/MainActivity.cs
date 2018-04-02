@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using StructureMap;
+using Xamarin.Forms;
 
 namespace RobotController.Xamarin.Forms.Droid
 {
@@ -30,7 +31,7 @@ namespace RobotController.Xamarin.Forms.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
           
             var mainPage = _container.GetInstance<RobotController.Xamarin.Forms.MainPage>();
-            LoadApplication(new App(mainPage));
+            LoadApplication(new App(new NavigationPage(mainPage)));
         }
     }
 }

@@ -11,24 +11,14 @@ namespace RobotController.Xamarin.Forms
 {
 	public partial class App : Application
 	{
-	    private readonly Container _container;
         public App()
 		{
 			InitializeComponent();
-		    _container = new Container(_ =>
-		    {
-		        _.For<IRobotModel>().Use<RobotModel>();
-		        _.For<MainPage>().Use<MainPage>();
-		        _.For<MainViewModel>().Use<MainViewModel>();
-		        _.For<IHostNameResolver>().Use<SimpleHostNameResolver>();
-            });
-            MainPage = _container.GetInstance<MainPage>();
         }
 
-	    public App(MainPage mainPage)
+	    public App(NavigationPage mainPage)
 	    {
 	        MainPage = mainPage;
-
 	    }
 
 		protected override void OnStart ()

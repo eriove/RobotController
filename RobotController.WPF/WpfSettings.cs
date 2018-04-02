@@ -25,6 +25,9 @@ namespace RobotController.WPF
             set => Application.Current.Properties[nameof(HostName)] = value;
         }
 
+        public byte LeftMiddleValue { get; set; }
+        public byte RightMiddleValue { get; set; }
+
         public Task SaveAsync()
         {
             return Task.CompletedTask;

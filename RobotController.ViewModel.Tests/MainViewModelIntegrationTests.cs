@@ -17,15 +17,17 @@ namespace RobotController.ViewModel.Tests
         private readonly ITestOutputHelper _output;
         private readonly HttpTest _httpTest = new HttpTest();
         private readonly MainViewModel _sut;
-        private readonly ISettingsView _settingsView = new Mock<ISettingsView>().Object;
-        private string _ip = "http://192.168.10.113";
+        private string _ip = "http://192.168.10.141";
         public MainViewModelIntegrationTests(ITestOutputHelper output)
         {
             _output = output;
             var resolver = new Mock<IHostNameResolver>();
             resolver.Setup(x => x.GetValidHostName(It.IsAny<string>())).Returns(Task.FromResult(_ip));
-            IRobotModel robotModel = new RobotModel(resolver.Object, new Mock<ISettings>().Object);
-            _sut = new MainViewModel(robotModel, _settingsView);
+            var settings = new Mock<ISettings>();
+            settings.Setup(x => x.HostName).Returns(_ip);
+
+            IRobotModel robotModel = new RobotModel(resolver.Object, settings.Object);
+            _sut = new MainViewModel(robotModel, new Mock<INavigationService>().Object);
         }
 
         [Fact]

@@ -10,10 +10,10 @@ namespace RobotController.Xamarin.Forms
 {
     public class Settings : ISettings
     {
-        private IDictionary<string, object> _properties;
-        public Settings()
+        private readonly IDictionary<string, object> _properties;
+        public Settings(ISettingsDictionary settingsDictionary)
         {
-            _properties = Application.Current?.Properties ?? new ConcurrentDictionary<string, object>();
+            _properties = Application.Current?.Properties ?? settingsDictionary.Dictionary;
         }
         public string HostName
         {
@@ -32,6 +32,46 @@ namespace RobotController.Xamarin.Forms
 
             }
             set => _properties[nameof(HostName)] = value;
+        }
+
+        public byte LeftMiddleValue
+        {
+            get
+            {
+                if (!(_properties.TryGetValue(nameof(LeftMiddleValue), out object value) &&
+                    byte.TryParse(value?.ToString() ?? "", out byte byteValue)))
+                {
+                    byte middleValue = 95;
+                    _properties[nameof(LeftMiddleValue)] = middleValue;
+                    return middleValue;
+                }
+                else
+                {
+                    return byteValue;
+                }
+
+            }
+            set => _properties[nameof(LeftMiddleValue)] = value;
+        }
+
+        public byte RightMiddleValue
+        {
+            get
+            {
+                if (!(_properties.TryGetValue(nameof(RightMiddleValue), out object value) &&
+                      byte.TryParse(value?.ToString() ?? "", out byte byteValue)))
+                {
+                    byte middleValue = 96;
+                    _properties[nameof(RightMiddleValue)] = middleValue;
+                    return middleValue;
+                }
+                else
+                {
+                    return byteValue;
+                }
+
+            }
+            set => _properties[nameof(RightMiddleValue)] = value;
         }
 
         public Task SaveAsync()

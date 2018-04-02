@@ -11,11 +11,11 @@ namespace RobotController.ViewModel.Tests
     {
         private readonly MainViewModel _sut;
         private readonly Mock<IRobotModel> _robotModelMock;
-        private readonly ISettingsView _settingsView = new Mock<ISettingsView>().Object;
+        private readonly INavigationService _navigationService = new Mock<INavigationService>().Object;
         public MainViewModelTests()
         {
             _robotModelMock = new Mock<IRobotModel>();
-            _sut = new MainViewModel(_robotModelMock.Object, _settingsView);
+            _sut = new MainViewModel(_robotModelMock.Object, _navigationService);
         }
 
         [Fact]

@@ -28,7 +28,7 @@ namespace RobotController.WPF
                 _.For<MainWindow>().Use<MainWindow>();
                 _.For<MainViewModel>().Use<MainViewModel>();
                 _.For<IHostNameResolver>().Use<SimpleHostNameResolver>();
-                _.For<ISettingsView>().Use<SettingsWindow>();
+                //_.For<ISettingsView>().Use<SettingsWindow>();
                 _.For<SettingsViewModel>().Use<SettingsViewModel>();
                 _.For<ISettings>().Use<WpfSettings>().Singleton();
             });

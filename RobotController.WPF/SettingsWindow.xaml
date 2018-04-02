@@ -14,8 +14,8 @@
         <StackPanel>
             <Label Height="30">Host name:</Label>
             <TextBox Height="30" Text="{Binding Path=HostName}"/>
-            <Button Height="30" Command="{Binding Path=SaveSettings}">Save settings</Button>
-            <Button Height="30" ToolTip="Close Window" Content="Close" Click="CloseWindow"/>
+            <Button Height="30" Command="{Binding Path=SaveSettingsAndClose}">Save settings</Button>
+            <!--<Button Height="30" ToolTip="Close Window" Content="Close" Click="CloseWindow"/>-->
         </StackPanel>
     </Grid>
 </Window>

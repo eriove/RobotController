@@ -8,6 +8,8 @@ namespace RobotController.Model
     public interface ISettings
     {
         string HostName { get; set; }
+        byte LeftMiddleValue { get; set; }
+        byte RightMiddleValue { get; set; }
 
         Task SaveAsync();
     }

@@ -12,25 +12,12 @@ using Xamarin.Forms.Xaml;
 namespace RobotController.Xamarin.Forms
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class SettingsPage : ContentPage, ISettingsView
+	public partial class SettingsPage : ContentPage
 	{
-	    private readonly Func<INavigation> _navigationOfFirstPage;
-
-	    public SettingsPage(SettingsViewModel viewModel, Func<INavigation> navigationOfFirstPage)
+	    public SettingsPage(SettingsViewModel viewModel)
 		{
-		    _navigationOfFirstPage = navigationOfFirstPage;
 		    InitializeComponent ();
             BindingContext = viewModel;
 		}
-
-        public async Task Show()
-        {
-            await _navigationOfFirstPage().PushModalAsync(this);
-        }
-
-	    public async Task Hide()
-	    {
-	        await _navigationOfFirstPage().PopAsync();
-        }
 	}
 }
