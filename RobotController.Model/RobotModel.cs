@@ -12,21 +12,22 @@ namespace RobotController.Model
     public class RobotModel : IRobotModel
     {
         private readonly IHostNameResolver _hostNameResolver;
+        private readonly ISettings _settings;
 
-        public RobotModel(IHostNameResolver hostNameResolver)
+        public RobotModel(IHostNameResolver hostNameResolver, ISettings settings)
         {
             _hostNameResolver = hostNameResolver;
+            _settings = settings;
+            _hostName = _settings.HostName;
         }
 
         private readonly string _hostName = "http://walle.local";//"http://192.168.10.113";
-        private volatile string _resolvedHostName;
 
         private async Task SetServosAndUpdateBatteryVoltage(byte[] servoValues)
         {
             try
             {
-                _resolvedHostName  = _resolvedHostName ?? await _hostNameResolver.GetValidHostName(_hostName);
-                var query = _resolvedHostName.AppendPathSegment("servos");
+                var query = _settings.HostName.AppendPathSegment("servos");
                 for (int i = 0; i < servoValues.Length; i++)
                 {
                     query = query.SetQueryParam((i + 1).ToString(), servoValues[i]);

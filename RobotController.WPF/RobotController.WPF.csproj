@@ -1,5 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <ProjectGuid>{24793F93-0FD8-4EC9-B1D2-028DB489B10D}</ProjectGuid>
     <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
     <TargetFramework>net46</TargetFramework>
     <OutputType>WinExe</OutputType>
@@ -19,12 +20,23 @@
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx" Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs" />
     <Compile Update="Properties\Resources.Designer.cs" DesignTime="True" AutoGen="True" DependentUpon="Resources.resx" />
+    <Compile Update="SettingsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
 
     <None Update="Properties\Settings.settings" Generator="SettingsSingleFileGenerator" LastGenOutput="Settings.Designer.cs" />
+
+    <None Update="SettingsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
     <Compile Update="Properties\Settings.Designer.cs" DesignTime="True" AutoGen="True" DependentUpon="Settings.settings" />
 
     <Page Include="MainWindow.xaml" SubType="Designer" Generator="MSBuild:Compile" />
     <Compile Update="MainWindow.xaml.cs" DependentUpon="MainWindow.xaml" />
+
+    <Page Include="SettingsWindow.xaml" SubType="Designer" Generator="MSBuild:Compile" />
+    <Compile Update="SettingsWindow.xaml.cs" DependentUpon="SettingsWindow.xaml" />
+
     <Resource Include="Images\*.png" />
 
     <ApplicationDefinition Include="App.xaml" SubType="Designer" Generator="XamlIntelliSenseFileGenerator" />

@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using RobotController.Common;
 using RobotController.Model;
 using UnitsNet;
 
@@ -15,17 +16,21 @@ namespace RobotController.ViewModel
         private bool _canSendCommands = true;
         
 
-        public MainViewModel(IRobotModel model)
+        public MainViewModel(IRobotModel model, ISettingsView settingsView)
         {
             _model = model;
             _model.RaiseBatteryVoltageChanged += (sender, dc) =>
             {
                 BatteryVoltage = dc;
             };
+
             _model.RaiseException += (sender, exception) =>
             {
                 ErrorMessage = exception.Message;
             };
+
+            ShowSettings = new RelayCommand(async () => await settingsView.Show());
+
             GoForward = new RelayCommand(async () =>
             {
                 CanSendCommands = false;
@@ -70,6 +75,8 @@ namespace RobotController.ViewModel
             }, () => CanSendCommands);
         }
 
+        public RelayCommand ShowSettings { get; set; }
+
         public RelayCommand GoForward { get; set; }
         public RelayCommand GoBackward { get; set; }
         public RelayCommand GoForwardLeft { get; set; }
@@ -84,7 +91,7 @@ namespace RobotController.ViewModel
             get => _batteryVoltage;
             set
             {
-                if (value != _batteryVoltage)
+                if (!value.Equals(_batteryVoltage,ElectricPotentialDc.FromVoltsDc(0.001)))
                 {
                     _batteryVoltage = value;
                     RaisePropertyChanged();

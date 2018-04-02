@@ -15,6 +15,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -36,5 +37,6 @@
 
         <Label Grid.Row="0" Grid.Column="0" Text="{Binding Path=BatteryVoltage, Converter={StaticResource voltageToString}}" FontSize="18" />
         <Label Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="5" Text="{Binding ErrorMessage}" />
+        <Button Grid.Row="4" Grid.Column="0" Text="Settings" Command="{Binding ShowSettings}" CommandParameter="{Binding Source=Self,Path=Navigation}" />
     </Grid>
 </ContentPage>

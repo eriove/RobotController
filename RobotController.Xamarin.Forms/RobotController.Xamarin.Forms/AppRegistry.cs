@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using RobotController.Common;
 using RobotController.Model;
 using RobotController.ViewModel;
 using StructureMap;
@@ -16,6 +17,9 @@ namespace RobotController.Xamarin.Forms
             For<MainPage>().Use<MainPage>();
             For<MainViewModel>().Use<MainViewModel>();
             For<IHostNameResolver>().Use<TmdsMDnsHostNameResolver> ();
+            For<ISettings>().Use<Settings>();
+            For<SettingsViewModel>().Use<SettingsViewModel>();
+            For<ISettingsView>().Use<SettingsPage>();
         }
     }
 }

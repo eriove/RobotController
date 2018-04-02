@@ -6,14 +6,7 @@
         xmlns:local="clr-namespace:RobotController.WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Window.Resources>
-        <ResourceDictionary>
-            <local:Wrapper x:Key="Wrapper"/>
-        </ResourceDictionary>
-    </Window.Resources>
-    <Window.DataContext>
-        <Binding Source="{StaticResource Wrapper}" Path="ViewModel"/>
-    </Window.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -41,6 +34,7 @@
         <Button Grid.Row="2" Grid.Column="3">Right</Button>
 
         <Label Content="{Binding BatteryVoltage}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="5" Content="{Binding ErrorMessage}" />
+        <Label Grid.Row="3" Grid.Column="0"  Grid.ColumnSpan="4" Content="{Binding ErrorMessage}" />
+        <Button Grid.Row="3" Grid.Column="4" Command="{Binding ShowSettings}">Options</Button>
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using System;
 using Moq;
+using RobotController.Common;
 using RobotController.Model;
 using Shouldly;
 using Xunit;
@@ -10,10 +11,11 @@ namespace RobotController.ViewModel.Tests
     {
         private readonly MainViewModel _sut;
         private readonly Mock<IRobotModel> _robotModelMock;
+        private readonly ISettingsView _settingsView = new Mock<ISettingsView>().Object;
         public MainViewModelTests()
         {
             _robotModelMock = new Mock<IRobotModel>();
-            _sut = new MainViewModel(_robotModelMock.Object);
+            _sut = new MainViewModel(_robotModelMock.Object, _settingsView);
         }
 
         [Fact]

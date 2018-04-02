@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using RobotController.Common;
 using RobotController.Model;
 using RobotController.ViewModel;
 using StructureMap;
@@ -27,6 +28,9 @@ namespace RobotController.WPF
                 _.For<MainWindow>().Use<MainWindow>();
                 _.For<MainViewModel>().Use<MainViewModel>();
                 _.For<IHostNameResolver>().Use<SimpleHostNameResolver>();
+                _.For<ISettingsView>().Use<SettingsWindow>();
+                _.For<SettingsViewModel>().Use<SettingsViewModel>();
+                _.For<ISettings>().Use<WpfSettings>().Singleton();
             });
 
             var mainWindow = _container.GetInstance<MainWindow>();

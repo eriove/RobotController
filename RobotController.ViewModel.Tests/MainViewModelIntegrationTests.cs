@@ -8,6 +8,7 @@ using Moq;
 using Shouldly;
 using Xunit;
 using Xunit.Abstractions;
+using RobotController.Common;
 
 namespace RobotController.ViewModel.Tests
 {
@@ -16,14 +17,15 @@ namespace RobotController.ViewModel.Tests
         private readonly ITestOutputHelper _output;
         private readonly HttpTest _httpTest = new HttpTest();
         private readonly MainViewModel _sut;
+        private readonly ISettingsView _settingsView = new Mock<ISettingsView>().Object;
         private string _ip = "http://192.168.10.113";
         public MainViewModelIntegrationTests(ITestOutputHelper output)
         {
             _output = output;
             var resolver = new Mock<IHostNameResolver>();
             resolver.Setup(x => x.GetValidHostName(It.IsAny<string>())).Returns(Task.FromResult(_ip));
-            IRobotModel robotModel = new RobotModel(resolver.Object);
-            _sut = new MainViewModel(robotModel);
+            IRobotModel robotModel = new RobotModel(resolver.Object, new Mock<ISettings>().Object);
+            _sut = new MainViewModel(robotModel, _settingsView);
         }
 
         [Fact]

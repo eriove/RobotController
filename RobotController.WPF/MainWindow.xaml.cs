@@ -24,7 +24,7 @@ namespace RobotController.WPF
     {
         public MainWindow()
         {
-            DataContext = new MainViewModel(new RobotModel(new SimpleHostNameResolver()));
+            InitializeComponent();
         }
         public MainWindow(MainViewModel mainViewModel)
         {
